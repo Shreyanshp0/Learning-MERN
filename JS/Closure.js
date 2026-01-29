@@ -71,22 +71,50 @@
 // f()
 // f()
 // only once 
-function once(fn) {
-  let called = false;
+// function once(fn) {
+//   let called = false;
 
-  return function (...args) {
-    if (!called) {
-      called = true;
-      return fn.apply(this, args);
-    }
-  };
-}
+//   return function (...args) {
+//     if (!called) {
+//       called = true;
+//       return fn.apply(this, args);
+//     }
+//   };
+// }
 
-const init = once(() => {
-  console.log("Initialized");
-});
+// const init = once(() => {
+//   console.log("Initialized");
+// });
 
-init(); // Initialized
-init(); // nothing
-init(); // nothing
+// init(); // Initialized
+// init(); // nothing
+// init(); // nothing
+
+
+// function outer (x){            
+//   return function inner(y){
+//     console.log(x+y);
+//   }
+// }
+// const o=outer(3)
+// o(4)
+
+
+// function secret(){
+//   let count=0
+//   return{
+//     increment(){
+//       count++
+//     },
+//     get(){
+//        return count;
+//     }
+//   }
+// }
+// const s = secret();
+// console.log(s.get()); 
+// s.increment();
+// s.increment();
+// console.log(s.get()); 
+
 
