@@ -80,15 +80,37 @@
 
 // async await
 
-function getdata(data){
-        console.log(data);
+// function getdata(data){
+//         console.log(data);
+// }
+
+
+
+// async function name(){
+//     await getdata(1) // await acts as setTimeout 
+//     await getdata(2)
+//     await getdata(3)
+// }
+// name()
+
+const myPromise = new Promise((resolve, reject) => {
+  let success = true;
+
+  if (success) {
+    resolve("Data received");
+  } else {
+    reject("Something went wrong");
+  }
+});
+console.log(myPromise);
+
+// create a fucntion which returns a promise and after 3 sec it will resolve the promise
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = { id: 1, name: "John Doe" };
+      resolve(data);
+    }, 3000);
+  }
+  );
 }
-
-
-
-async function name(){
-    await getdata(1) // await acts as setTimeout 
-    await getdata(2)
-    await getdata(3)
-}
-name()

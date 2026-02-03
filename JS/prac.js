@@ -5,7 +5,8 @@ let head=document.querySelector("#head");
 let div=document.querySelector("#div");
 
 
-
+//event handler will work only with the nearest function
+// event 
 
 
 head.addEventListener("mouseover",()=>{
