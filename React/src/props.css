@@ -1,0 +1,13 @@
+.list{
+    font-size: 20px;
+    border: 1px solid #747bff;
+    list-style: none;
+}
+.list:hover{
+    border-radius: 10px;
+    border-color: #213547;
+}
+li{
+    list-style-type: none;
+    background-color: aquamarine;
+}

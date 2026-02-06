@@ -1,0 +1,18 @@
+.boxes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+.userCard {
+    border: 1px solid #22276e;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 10px 15px rgb(44, 80, 106);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.userCard:hover{
+    border-color: #747bff;
+    
+    box-shadow: 0 10px 25px rgb(48, 98, 134);
+}
