@@ -88,6 +88,7 @@ import Useref from './Hooks/UseRef'
 import Login from './Hooks/Login'
 import Srcoll from './Hooks/Srcoll'
 import UseRefTimer from './Hooks/UseRefTimer'
+import Portfolio from './Hooks/Portfolio'
 
 const App = () => {
   return (
@@ -95,7 +96,8 @@ const App = () => {
       {/* <Login/> */}
       {/* <Useref/>
       <Srcoll/> */}
-      <UseRefTimer/>
+      {/* <UseRefTimer/> */}
+      <Portfolio/>
     </div>
   )
 }
