@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react'
 const Useref = () => {
   const ref = useRef(0)
   const [count , setCount] = useState(0)
+  const navigate=navigate()
   return (
     <div className="center-ui">
       <div>
@@ -15,6 +16,7 @@ const Useref = () => {
           Click
         </button>
         <button onClick={()=>{setCount(0)}}>Reset</button>
+          <button onClick={()=>navigate("/")}>Go to Home</button>
       </div>
     </div>
   )

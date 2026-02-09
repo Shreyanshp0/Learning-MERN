@@ -89,15 +89,39 @@ import Login from './Hooks/Login'
 import Srcoll from './Hooks/Srcoll'
 import UseRefTimer from './Hooks/UseRefTimer'
 import Portfolio from './Hooks/Portfolio'
-
+import Props from './Props'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Products from './Products/Products'
+import ProductDetails from './Products/ProductDetails'
+import PasswordToggle from './Hooks/PasswordToggle'
+import PhotoApi from './Photos/PhotoApi'
+import PhotoDetails from './Photos/PhotoDetails'
+import User from './UserDashBoard/User'
+import UserDetail from './UserDashBoard/UserDetail'
+import UseMemo from './Hooks/UseMemo'
 const App = () => {
   return (
     <div>
-      {/* <Login/> */}
-      {/* <Useref/>
-      <Srcoll/> */}
-      {/* <UseRefTimer/> */}
-      <Portfolio/>
+      {/* <Login/> 
+       <Useref/>
+      <Srcoll/> 
+       <UseRefTimer/>
+      <Portfolio/> */}
+
+      <BrowserRouter>
+      <Routes>
+        <Route path="/UseMemo" element={<UseMemo/>}/>
+        <Route path="/user" element={<User/>}/>
+        <Route path="/user/:id" element={<UserDetail/>}/>
+        <Route path="/Photos" element={<PhotoApi/>}/>
+        <Route path="/Photos/:id" element={<PhotoDetails/>}/>
+        <Route path="/" element={<Portfolio/>}/>
+        <Route path="/Products" element={<Products/>}/>
+        <Route path="/Products/:id" element={<ProductDetails/>}/>
+        <Route path="/Useref" element={<UseRefTimer/>}/>
+        <Route path="/PasswordToggle" element={<PasswordToggle/>}/>
+      </Routes>
+      </BrowserRouter>
     </div>
   )
 }
