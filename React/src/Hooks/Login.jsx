@@ -71,7 +71,6 @@ const Login = () => {
       setMessage("Invalid ID or Username ❌");
     }
   };
-
   return (
     <div>
       <h1>Login</h1>
@@ -82,7 +81,6 @@ const Login = () => {
         value={userid}
         onChange={(e) => setUserId(e.target.value)}
       />
-
       <div>
         <input
           type={showPassword ? "text" : "password"}
@@ -102,5 +100,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-const UseSearchParams = () => {
-    const [product, setProduct] = useState("");
+const Async = () => {
+    
+const [product, setProduct] = useState("");
     const [products, setProducts] = useState([]);
     const [price, setPrice]=useState(0)
     const [searchParams, setSearchParams] = useSearchParams()
@@ -11,14 +12,16 @@ const UseSearchParams = () => {
     const handleSearch = () => {
         setSearchParams({ category: product })
     }
-
-    useEffect(()=>{
-        if (!category) return
-        fetch(`https://dummyjson.com/products/category/${category}`)
-        .then(res=>res.json())
-        .then(data=>setProducts(data.products || []))
-    },[category])
- 
+    const fetchproducts = async () => {
+            if (!category) return
+            const res = await fetch(`https://dummyjson.com/products/category/${category}`)
+            const data = await res.json()
+            setProducts(data.products || [])
+        }
+    useEffect(() => {
+        
+        fetchproducts()
+    }, [category])
 
     const filterprice = products.filter(p => p.price <= (price || 10000))
   return (
@@ -37,4 +40,4 @@ const UseSearchParams = () => {
   )
 }
 
-export default UseSearchParams
+export default Async

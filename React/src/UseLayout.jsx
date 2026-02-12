@@ -1,4 +1,4 @@
-import React, { use, useEffect, useLayoutEffect, useState } from 'react'
+import React, {  useEffect, useLayoutEffect, useState } from 'react'
 
 const UseLayout = () => {
     const [number, setNumber] = useState(0)

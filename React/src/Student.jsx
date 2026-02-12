@@ -7,7 +7,7 @@ const Student = () => {
     const handledblclick=()=>{
         alert("Clicked two times")
     }
-  return (// only ui can be returned here no | if we try to return a js function it'll give error
+  return (
     <div>
       <button onClick={handleclick}>Click me</button>
       <button onDoubleClick={handledblclick}>Double Click</button>
