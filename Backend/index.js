@@ -1,88 +1,33 @@
 const express= require('express')
 const mongoose= require('mongoose')
-const User=require('./StudentSchema.js')
-const CompanyDetail=require('./CompanyDetails.js')
+const CompanyDetail=require('./Model/CompanyDetails.js')
+const Job=require('./Model/JobSchema.js')
 const app=express()
-
+const dotenv=require('dotenv')
+dotenv.config()
+const jwt = require("jsonwebtoken");
+const route=require("./Routers/Routes.js")
 app.use(express.json()) // whatever we are trying to fetch or send data to the server, it will be in json format
-mongoose.connect('mongodb+srv://PC-Compass:Compass%40pass@online-jobportal.lpqp1fj.mongodb.net/').then(()=>{console.log("DB Connected")})
+mongoose.connect(process.env.MongoDB_URI).then(()=>{console.log("DB Connected")})
 app.get("/about",(req,res)=>{
     res.send("hello")
 })
 
-app.post("/api/user",async (req, res)=>{
-    try{
-    // const user= await user.find()
-    const user= await User.create(req.body) // collection of data base
-     res.status(201).json({
-            success: true,
-            data: user
-        });
+const verifyToken=(req,res,next)=>{
+    const authHeader = req.headers.authorization 
+    if(!authHeader){
+        return res.status(401).json({message:"Unauthorized"})
     }
-    catch(e){
-        console.log(e)
+    const token=authHeader.split(" ")[1]  //the first field is bearer and the second field is the token that's why we are using index 1 because we want the token to be stored 
+    try {
+        const payload=jwt.verify(token,"Shreyansh") 
+        req.user=payload
+        next()
+    } catch (error) {
+        return res.status(403).json({message: "Invalid Token"})
     }
-})
-app.get("/api/user", async (req,res)=>{
-    try{
-    const users=await User.find();
-    res.status(200).json(users)
-    }
-    catch(e){
-        console.log(e)
-    }
-})
-app.put("/api/user/:id", async (req, res)=>{
-    try{
-        const updateduser= await User.findByIdAndUpdate(req.params.id , req.body,{new: true}) //we are using params beacuse we are configuring the id in the api link
-        res.status(200).json(updateduser)
-    
-    }
-    catch(e){
-        console.log(e)
-        res.status(500).json({message: "Error updating user", error: e.message})
-    }
-})
-app.delete("/api/user/:id", async(req, res)=>{
-    try{
-        const deleteuser= await User.findByIdAndDelete(req.params.id)
-        res.status(200).json(deleteuser)
-    }
-    catch(e){
-        console.log(e)
-    }
-})
-app.post("/api/companydetails", async (req,res)=>{
-    try{
-        const companydetails= await CompanyDetail.create(req.body)
-        res.status(201).json({
-            success:true,
-            data: companydetails
-        })
-    }
-    catch(e){
-        console.log(e)
-        res.status(500).json({message: "Error creating company details", error: e.message})
-    }
-})
-app.get("/api/companydetails", async (req,res)=>{
-    try{
-        const companydetails= await CompanyDetail.find();
-        res.status(200).json(companydetails)
-    }
-    catch(e){
-        console.log(e)
-    }
-})
-app.put("/api/companydetails/:id", async (req,res)=>{
-    try{
-        const updatecompanydetails= await CompanyDetail.findByIdAndUpdate(req.params.id,req.body, {new: true})
-        res.status(200).json(updatecompanydetails)
-    }
-    catch(e){
-        console.log(e)
-    }
-})
+}
+app.use("/api", route)
 app.listen(3000,()=>{
     console.log("Server connected")
 })
